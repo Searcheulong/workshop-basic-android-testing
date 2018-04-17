@@ -24,10 +24,8 @@ public class RecipeStore {
         File file2 = new File(directory, "creamed_carrots.txt");
         File file3 = new File(directory, "deviled_eggs.txt");
         File file4 = new File(directory, "fried_tomatoes.txt");
-        InputStream stream1 = null;
-        InputStream stream2 = null;
-        InputStream stream3 = null;
-        InputStream stream4 = null;
+        InputStream stream1,stream2, stream3, stream4 = null;
+
         try {
             stream1 = context.getAssets().open(file1.getPath());
             stream2 = context.getAssets().open(file2.getPath());
@@ -35,10 +33,13 @@ public class RecipeStore {
             stream4 = context.getAssets().open(file4.getPath());
             Recipe recipe = Recipe.readFromStream(stream1);
             recipes.add(recipe);
+            map.put(recipe.id, recipe);
             recipe = Recipe.readFromStream(stream2);
             recipes.add(recipe);
+            map.put(recipe.id, recipe);
             recipe = Recipe.readFromStream(stream3);
             recipes.add(recipe);
+            map.put(recipe.id, recipe);
             recipe = Recipe.readFromStream(stream4);
             recipes.add(recipe);
             map.put(recipe.id, recipe);
