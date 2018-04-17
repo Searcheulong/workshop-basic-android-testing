@@ -2,7 +2,10 @@ package workshop.testing.data.model;
 
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import static org.junit.Assert.*;
 
@@ -43,6 +46,20 @@ public class RecipeTest {
                 "1 pine apple juice\n" +
                 "Mix all together and strain. Add large piece of ice.",recipe.description);
     }
+    @Test
+    public void i_can_from_no_id() throws IOException {
+        //Arrange
+        InputStream inputStream
+                = RecipeTest.class.getResourceAsStream("/recipes/water.txt");
+        inputStream.close();
 
+
+        //Act
+        Recipe recipe=Recipe.readFromStream(inputStream);
+
+        //Assert
+        assertNull(recipe);
+
+    }
 
 }
